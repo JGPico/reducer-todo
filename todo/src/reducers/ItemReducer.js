@@ -1,5 +1,6 @@
 export const initialState = {
-    content: "Things to do"
+    content: "Things to do",
+    completed: false
 };
 
 export const itemReducer = (state, action) => {

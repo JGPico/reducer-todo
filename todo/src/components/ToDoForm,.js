@@ -1,33 +1,39 @@
 import React, { useState, useReducer } from "react";
-import { itemReducer, initialState } from "../reducers/ItemReducer";
+// import { itemReducer, initialState } from "../reducers/ItemReducer";
 
-function ToDoForm () {
+function ToDoForm (props) {
     
-    const [state, dispatch] = useReducer(itemReducer, initialState);
-    const [formInput, setFormInput] = useState('');
+    // const [state, dispatch] = useReducer(itemReducer, initialState);
+    const [formInput, setFormInput] = useState({
+        content: ""
+    });
 
     const handleChanges = e => {
         e.preventDefault();
-        setFormInput(e.target.value);
+        setFormInput({
+            ...formInput,
+            content: e.target.value
+        });
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        
+        props.addContent(formInput);
+        setFormInput({content: ""})
     }
     
     return (
         <div>
-            <h1>{state.content}</h1>
             <form onSubmit={handleSubmit}>
                 <input
                 label='item'
                 name='item'
                 id='item'
-                value={formInput}
+                placeholder='Input new task'
+                value={formInput.content}
                 onChange={handleChanges}/>
 
-                <button onClick={() => dispatch({type: 'Update_Content', payload: formInput})}>Add</button>
+                <button>Add</button>
                 
             </form>
         </div>
