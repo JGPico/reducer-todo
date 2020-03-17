@@ -25,9 +25,9 @@ export const listReducer = (state, action) => {
             }
         case "Remove_Completed":
             return {
-                ...state,
+                
                 todos: state.todos.filter(item => {
-                    return item.completed === true;
+                    return item.completed !== true;
                 })
             }    
         default: 

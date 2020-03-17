@@ -32,7 +32,7 @@ function ToDoForm () {
             ))}
             <button
              type='button'
-             onClick={() => dispatch({type: 'Removed_Completed'})}>
+             onClick={() => dispatch({type: 'Remove_Completed'})}>
                 Clear Completed
             </button>
         </div>

@@ -7,22 +7,22 @@ import './App.css';
 
 function App() {
 
-  const defaultList = [
-    {
-      content: 'Build Muscle',
-      id: 1,
-      completed: false
-    },
-    {
-      content: 'Put on Sunglasses',
-      id: 2,
-      completed: false
-    }
-  ];
+  // const defaultList = [
+  //   {
+  //     content: 'Build Muscle',
+  //     id: 1,
+  //     completed: false
+  //   },
+  //   {
+  //     content: 'Put on Sunglasses',
+  //     id: 2,
+  //     completed: false
+  //   }
+  // ];
 
  // const [coreList, setCoreList] = useState(defaultList);
 
-  const [state, dispatch] = useReducer(listReducer, initialState);
+  // const [state, dispatch] = useReducer(listReducer, initialState);
 
   // const addContent = content => {
   //   const newContent = {
