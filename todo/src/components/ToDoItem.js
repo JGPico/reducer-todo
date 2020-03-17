@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useReducer } from "react";
+import { listReducer, initialState } from "../reducers/ListReducer";
 
 const ToDoItem = props => {
 
+    const [state, dispatch] = useReducer(listReducer, {todos: initialState});
+
     return (
         <div 
-        onClick={() => props.toggleCompleted(props.item.id)}
-        className={`item${props.item.completed ? ' completed' : ''}`}>
+        onClick={() => dispatch({type: 'Toggle_Completed', props.index})}
+        className={`item${props.item.completed ? ' completed' : ''}`}
+        >
             <p>{props.item.content}</p>
         </div>
     );

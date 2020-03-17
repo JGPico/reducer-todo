@@ -1,36 +1,48 @@
 import React, { useState, useReducer } from "react";
-// import { itemReducer, initialState } from "../reducers/ItemReducer";
+import ToDoList from "./ToDoList";
+import { listReducer, initialState } from "../reducers/ListReducer";
 
-function ToDoForm (props) {
+function ToDoForm () {
     
-    // const [state, dispatch] = useReducer(itemReducer, initialState);
-    const [formInput, setFormInput] = useState({
-        content: ""
-    });
+    const [state, dispatch] = useReducer(listReducer, {todos: initialState});
+    const [formInput, setFormInput] = useState('');
+
 
     const handleChanges = e => {
-        e.preventDefault();
-        setFormInput({
-            ...formInput,
-            content: e.target.value
-        });
+        setFormInput(e.target.value);
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        props.addContent(formInput);
-        setFormInput({content: ""})
+        dispatch({ type: 'Add_Content', payload: formInput})
+        setFormInput('');
     }
     
     return (
         <div>
+            {/* <ToDoList coreList={state.todos}/> */}
+            <div>
+            {state.todos.map((item, index) => (
+                <div 
+                onClick={() => dispatch({type: 'Toggle_Completed', index})}
+                className={`item${item.completed ? ' completed' : ''}`}
+                >
+                    <p>{item.content}</p>
+                </div>
+            ))}
+            <button
+             type='button'
+             onClick={() => dispatch({type: 'Removed_Completed'})}>
+                Clear Completed
+            </button>
+        </div>
             <form onSubmit={handleSubmit}>
                 <input
                 label='item'
                 name='item'
                 id='item'
                 placeholder='Input new task'
-                value={formInput.content}
+                value={formInput}
                 onChange={handleChanges}/>
 
                 <button>Add</button>
